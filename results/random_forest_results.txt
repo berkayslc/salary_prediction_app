@@ -1,0 +1,5 @@
+
+Model Performansı:
+Mean Absolute Error (MAE): 10278.06
+Mean Squared Error (MSE): 276088182.14
+R2 Score: 0.5013
