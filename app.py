@@ -4,6 +4,9 @@ import joblib
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 
+df = pd.read_csv('data/salary.csv')
+
+
 # 1. Model ve Dönüşüm Araçlarını Yükleme
 model = joblib.load('models/gradient_boosting_model.pkl')
 label_encoders = joblib.load('encoders/label_encoders_gb.pkl')
@@ -15,13 +18,13 @@ st.write("Gradient Boosting modeli ile maaş tahmini yapın.")
 
 # Kullanıcıdan Girdi Alınacak Alanlar
 st.header("Bilgilerinizi Girin:")
-position = st.selectbox("Pozisyon", ['Backend Developer', 'Frontend Developer', 'Fullstack Developer', 'Data Scientist'])
-level = st.selectbox("Seviye", ['Junior', 'Mid', 'Senior'])
+position = st.selectbox("Pozisyon", df['Position'].unique())
+level = st.selectbox("Seviye", df['Level'].unique())
 experience = st.selectbox("Tecrübe", ['0-1 Yıl', '1-3 Yıl', '4-6 Yıl', '7+ Yıl'])
 technology = st.text_input("Teknoloji", "Python, Django")
-location = st.selectbox("Lokasyon", ['Türkiye', 'Yurt Dışı'])
-way_of_working = st.selectbox("Çalışma Şekli", ['Remote', 'Hybrid', 'Yerinde / Ofiste'])
-employees_number = st.selectbox("Çalışan Sayısı", ['0-50', '50-100', '100-300', '300-1000', '2000+'])
+location = st.selectbox("Lokasyon", df['Location'].unique())
+way_of_working = st.selectbox("Çalışma Şekli", df['Way_of_working'].unique())
+employees_number = st.selectbox("Çalışan Sayısı", df['Employees_number'].unique())
 salary_type = st.selectbox("Maaş Türü", ['Türk Lirası', 'USD', 'EUR'])
 
 # Kullanıcı Verilerini İşleme
